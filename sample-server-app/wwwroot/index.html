@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="logs"></div>
+    <script>
+        window.addEventListener('DOMContentLoaded', async function () {
+            const logs = document.getElementById('logs');
+            logs.innerText = 'Loading ...';
+            const resp = await fetch('/buckets');
+            if (resp.ok) {
+                const buckets = await resp.json();
+                logs.innerHTML = `<ul>${buckets.map(bucket => `<li>${bucket.bucketKey}</li>`).join('')}</ul>`;
+            } else {
+                logs.innerText = await resp.text();
+            }
+        });
+    </script>
+</body>
+</html>

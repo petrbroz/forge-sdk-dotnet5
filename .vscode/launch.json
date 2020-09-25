@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to find out which attributes exist for C# debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Sample Console App",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/sample-console-app/bin/Debug/net5.0/sample-console-app.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/sample-console-app",
+            "console": "internalConsole",
+            "envFile": "${workspaceFolder}/.env",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Launch Sample Server App",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/sample-server-app/bin/Debug/net5.0/sample-server-app.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/sample-server-app",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}
